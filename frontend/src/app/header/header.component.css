@@ -1,0 +1,24 @@
+header {
+    text-align: center;
+    background-color: #EEE;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  .logo
+  a {
+    margin: 0 10px;
+    color: #333;
+    text-decoration: none; 
+  }
+    a:hover {
+      text-decoration: underline;
+    }
+ .groupologo{
+    width: 100px;
+    overflow: hidden;
+    object-fit: cover;
+ }  
+  .active {
+    color: #666;
+    text-decoration: underline;
+  }
