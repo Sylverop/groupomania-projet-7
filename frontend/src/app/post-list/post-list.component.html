@@ -1,0 +1,6 @@
+<div class="post-list-wrapper">
+  <div class="container text-center">
+    <app-post-form></app-post-form>
+    <app-post [post]="post" *ngFor="let post of posts"></app-post>
+  </div>
+</div>

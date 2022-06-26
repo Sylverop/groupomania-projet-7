@@ -1,0 +1,70 @@
+<section class="gradient-form">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+                <div class="text-center">
+                  <img
+                    src="../../assets/icon-left-font.png"
+                    style="width: 185px"
+                    alt="logo"
+                  />
+                  <h4 class="mt-1 mb-5 pb-1">Bienvenue</h4>
+                </div>
+
+                <form [formGroup]="loginForm">
+                  <p>Connectez vous</p>
+
+                  <div class="form-group form-outline mb-4">
+                    <input
+                      type="email"
+                      id="email"
+                      class="form-control"
+                      placeholder="email"
+                      formControlName="email"
+                    />
+                    <label class="form-label" for="email">Email</label>
+                  </div>
+
+                  <div class="form-group form-outline mb-4">
+                    <input
+                      type="password"
+                      id="password"
+                      class="form-control"
+                      formControlName="password"
+                    />
+                    <label class="form-label" for="password"
+                      >Mot de passe</label
+                    >
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button
+                      class="btn btn-primary btn-block gradient-custom-2 mb-12"
+                      type="submit"
+                      (click)="onLogin()"
+                    >
+                      Connexion
+                    </button>
+                  </div>
+                </form>
+                <a [routerLink]="['/subscribe']">Créer un compte</a>
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">Nous sommes plus qu'une compagnie</h4>
+                <p class="mb-0">
+                  Groupomania, un groupe spécialisé dans la grande distribution.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+<div class="post-wrapper m-2">
+  <div class="row">
+    <div class="col p-4">
+      <div class="post-author-name text-start">
+        {{ post.authorName }}
+      </div>
+      <div class="post-date text-start p-1">
+        {{ post.date | date: "le d MMMM yyyy à HH:mm " }}
+      </div>
+      <div class="post-propriety d-flex flex-column justify-content-between">
+        <div class="post-message text-start">
+          {{ post.message }}
+        </div>
+        <div class="post-likes text-start p-2">
+          <i class="fa-solid fa-heart"></i> {{ post.likers.length }}
+          <button
+            (click)="
+              onLikeOrDislike(post._id, post.likers.includes(currentUserId))
+            "
+            class="btn-like m-2"
+          >
+            <span *ngIf="post.likers.includes(currentUserId)"
+              >Je n'aime plus</span
+            >
+            <span *ngIf="!post.likers.includes(currentUserId)">J'aime</span>
+          </button>
+        </div>
+      </div>
+      <div class="post-comment shadow-sm">
+        <app-comment
+          [comment]="comment"
+          *ngFor="let comment of post.comments"
+        ></app-comment>
+        <app-comment-form [postId]="post._id"></app-comment-form>
+      </div>
+    </div>
+  </div>
+</div>

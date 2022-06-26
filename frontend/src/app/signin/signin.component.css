@@ -1,0 +1,30 @@
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fd2d01;
+}
+.button-signin {
+  width: 100%;
+  height: 60px;
+  background-color: #ffd7d7;
+  border-color: white;
+}
+.button-signin a {
+  text-decoration: none;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="post-form-wrapper">
+  <div class="post-form-container">
+    <div class="post-form">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="row">
+          <div class="col">
+            <label for="postContent" class="form-post-label m-2"
+              >Contenu du poste</label
+            >
+            <textarea
+              class="form-control"
+              id="form-post"
+              rows="3"
+              name="postContent"
+              ngModel
+            ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input type="file" name="postImage" ngModel />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input
+              type="submit"
+              class="btn-postform col-md-6"
+              value="Publier"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

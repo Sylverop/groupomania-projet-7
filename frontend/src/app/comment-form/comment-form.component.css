@@ -1,0 +1,17 @@
+.form-label {
+  color: aliceblue;
+}
+
+.btn-commenter {
+  border-radius: 3px;
+  color: white;
+  background-color: #4e5166;
+  border: none;
+  margin: 10px;
+
+  height: 45px;
+}
+.btn-commenter:hover {
+  background-color: #fd2d01;
+  border: solid 1px white;
+}

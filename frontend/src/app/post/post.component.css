@@ -1,0 +1,42 @@
+.post-wrapper {
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.635);
+}
+.post-propriety {
+  border-radius: 8px;
+  box-shadow: rgb(116, 114, 114) 4px 4px 20px;
+  border: solid 3px rgba(128, 128, 128, 0.635);
+  background-color: white;
+  color: black;
+  min-height: 150px;
+}
+.post-author-name {
+  align-items: flex-start;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+  padding: 5px 5px 0px 5px;
+}
+.post-message {
+  font-size: 1rem;
+  padding: 0px 5px 2px 5px;
+}
+.btn-like {
+  border-radius: 3px;
+  color: white;
+  background-color: #fd2b0171;
+  border: none;
+}
+.post-likes {
+  border-top: solid 1px rgba(128, 128, 128, 0.635);
+}
+.post-likes i {
+  color: #fd2d01;
+}
+.post-comment {
+  background-color: #5d5f6ba8;
+  border-radius: 15px;
+}
+.post-date {
+  color: white;
+}

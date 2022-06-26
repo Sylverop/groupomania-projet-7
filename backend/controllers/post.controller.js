@@ -3,7 +3,7 @@ const User = require("../models/user.model");
 
 // CRUD post
 // récupération des posts
-exports.getPost = (req, res) => {
+exports.getPost = (_req, res) => {
   Post.find()
     .sort({ createdAt: -1 })
     .then((posts) => res.status(200).json(posts))
@@ -49,7 +49,7 @@ exports.likePost = (req, res) => {
     Post.findByIdAndUpdate(
       req.params.id,
       {
-        $addToSet: { likers: req.body.id },
+        $addToSet: { likers: req.body.userId },
       },
       { new: true },
       (err, docs) => {
@@ -57,7 +57,7 @@ exports.likePost = (req, res) => {
       }
     );
     User.findByIdAndUpdate(
-      req.body.id,
+      req.body.userId,
       {
         $addToSet: { likes: req.params.id },
       },
@@ -81,7 +81,7 @@ exports.unlikePost = (req, res) => {
     Post.findByIdAndUpdate(
       req.params.id,
       {
-        $pull: { likers: req.body.id },
+        $pull: { likers: req.body.userId },
       },
       { new: true },
       (err) => {
@@ -89,7 +89,7 @@ exports.unlikePost = (req, res) => {
       }
     );
     User.findByIdAndUpdate(
-      req.body.id,
+      req.body.userId,
       {
         $pull: { likes: req.params.id },
       },
@@ -115,10 +115,9 @@ exports.commentPost = (req, res) => {
       {
         $push: {
           comments: {
-            commenterId: req.body.commenterId,
-            commenterPseudo: req.body.commenterPseudo,
+            authorName: req.body.authorName,
             text: req.body.text,
-            timestamp: new Date().getTime(),
+            creationDate: req.body.creationDate
           },
         },
       },

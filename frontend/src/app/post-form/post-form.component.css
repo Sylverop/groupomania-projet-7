@@ -1,0 +1,18 @@
+.form-post-label {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.btn-postform {
+  border-radius: 3px;
+  color: white;
+  background-color: #4e5166;
+  border: none;
+  margin: 10px;
+  width: 33%;
+  height: 45px;
+}
+.btn-postform:hover {
+  background-color: #fd2d01;
+  border: solid 1px white;
+}

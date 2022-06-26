@@ -3,7 +3,7 @@ const fs = require("fs");
 
 // CRUD Utilisateur
 // récupération des info de tous les utilisateurs
-exports.getAllUsers = (req, res) => {
+exports.getAllUsers = (_req, res) => {
   User.find()
     .select("-password")
     .then((users) => res.status(200).json(users))

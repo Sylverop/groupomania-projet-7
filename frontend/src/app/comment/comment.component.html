@@ -1,0 +1,16 @@
+<div class="comment-wrapper m-2 pt-2">
+  <div class="comment-author text-start">
+    <div class="row">
+      <div class="col">
+        <span class="authorName">{{ comment.authorName }}</span
+        >&nbsp;-&nbsp;
+        <span class="creationDate">{{
+          comment.creationDate | date: "le d MMMM yyyy à HH:mm"
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="comment bg-light pt-1">
+    <div class="comment-text text-start p-2">{{ comment.text }}</div>
+  </div>
+</div>

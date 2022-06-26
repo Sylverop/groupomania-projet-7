@@ -1,39 +1,18 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/user.model");
 
-exports.checkUser = (req, res, next) => {
-  const token = req.cookies.jwt;
 
-  if (token) {
-    jwt.verify(token, process.env.TOKEN_KEY, async (err, decodedToken) => {
-      if (err) {
-        res.locals.user = null;
-        res.cookie("jwt", "", { maxAge: 1 });
-        next();
-      } else {
-        let user = await User.findById(decodedToken.userId);
-        res.locals.user = user;
-        next();
-      }
-    });
-  } else {
-    res.locals.user = null;
+module.exports = (req, res, next) => {
+  try{
+  const token = req.headers.authorization.split(' ')[1];
+  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+  const userId = decodedToken.userId;
+  req.auth = { userId };
+  if (req.body.userId && req.body.userId !== userId ) {
+    throw '403: unauthorized request';
+  } else{
     next();
-  }
-};
-
-exports.requireAuth = (req, res, next) => {
-  const token = req.cookies.jwt;
-  if (token) {
-    jwt.verify(token, process.env.TOKEN_KEY, (err, decodedToken) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(decodedToken.userId);
-        next();
-      }
-    });
-  } else {
-    console.log("Aucun token");
+  }                       
+  } catch (error) {
+      res.status(401).json({ error: error | 'requête non identifié' });
   }
 };

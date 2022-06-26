@@ -5,7 +5,7 @@ const uniqueValidator = require("mongoose-unique-validator");
 
 const userSchema = new mongoose.Schema(
     {
-    pseudo: {
+    name: {
         type: String,
         required: true,
         minlength: 3,
@@ -26,22 +26,14 @@ const userSchema = new mongoose.Schema(
         required: true,
         max: 1024,
         minlength: 6,
+    },   
+    likes: {
+      type: [String]
     },
-    imageUrl: {
-        type: String,
-        default: "./images/user/random-user.png"
-      },
-      bio :{
-        type: String,
-        max: 1024,
-      },      
-      likes: {
-        type: [String]
-      },
-      isAdmin: {
-        type: Boolean,
-        defaultValue: false,
-      },
+    isAdmin: {
+      type: Boolean,
+      defaultValue: false,
+    },
     },
     {
       timestamps: true,
