@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { map } from 'rxjs/internal/operators/map';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -58,5 +58,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.postSubscription.unsubscribe();
     this.commentSubscription.unsubscribe();
+    this.likeSubscription.unsubscribe();
   }
 }

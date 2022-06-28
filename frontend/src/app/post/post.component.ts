@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, map, Observable } from 'rxjs';
 import { PostListService } from '../post-list/service/post-list.service';
 import { Post } from './models/post.model';
@@ -12,21 +13,22 @@ import { PostService } from './service/post.service';
 export class PostComponent implements OnInit {
   @Input()
   post!: Post;
-  posts$!: Observable<Post>;
   loading!: boolean;
   errorMessage!: string;
   currentUserId!: string;
-
+  authorName!: string;
+  currentUserName!: string;
+  posts!: Observable<Post[]>;
   constructor(
     private postService: PostService,
-    private postListService: PostListService
+    private postListService: PostListService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    var userInLocalStorage = localStorage.getItem('userId');
-    if (userInLocalStorage) {
-      this.currentUserId = JSON.parse(userInLocalStorage);
-    }
+    var userInLocalStorage: any = localStorage.getItem('currentUser');
+    this.currentUserId = JSON.parse(userInLocalStorage)?.userId;
+    this.currentUserName = JSON.parse(userInLocalStorage)?.name;
   }
 
   onLikeOrDislike(postId: string, liked: boolean) {
@@ -48,5 +50,23 @@ export class PostComponent implements OnInit {
         .subscribe();
     }
     this.postListService.notifyLikeOrUnlike();
+  }
+
+  /* getSoftPosts() {
+    this.posts = this.postService.getPostFromStore();
+  } */
+
+  onDeletePost(postId: string) {
+    this.postService
+      .deletePost(postId)
+      .pipe(
+        map((data: any) => data),
+        catchError((err) => err)
+      )
+      .subscribe();
+    this.router.navigate(['/posts']).then((data) => {
+      // TODO : remplacer par evenement
+      window.location.reload();
+    });
   }
 }

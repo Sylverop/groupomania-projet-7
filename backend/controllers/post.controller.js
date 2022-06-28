@@ -37,10 +37,16 @@ exports.updatePost = (req, res) => {
 
 //Suppression d'un post
 exports.deletePost = (req, res) => {
-  Post.findByIdAndRemove(req.params.id, (err) => {
+  try{
+    Post.findByIdAndRemove(req.params.id, (err) => {
     if (!err) res.send("Post supprimé");
     else res.send(err);
+  
   });
+  }catch (err) {
+    return res.status(400).send(err);
+  }
+
 };
 
 // Ajout d'un like et enregistrement de l'utilisateur dans [likers]
@@ -63,7 +69,9 @@ exports.likePost = (req, res) => {
       },
       { new: true },
       (err) => {
-        if (!err) res.status(200).send("Post liké");
+        if (!err) {
+          res.status(200).send({message: "Post liké"});
+        }
         else {
           return res.status(400).send(err);
         }
@@ -95,7 +103,7 @@ exports.unlikePost = (req, res) => {
       },
       { new: true },
       (err) => {
-        if (!err) res.status(200).send("Like retiré");
+        if (!err) res.status(200).send({message: "Like retiré"});
         else {
           return res.status(400).send(err);
         }

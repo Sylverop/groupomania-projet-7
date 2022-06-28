@@ -4,25 +4,28 @@ import { BehaviorSubject, catchError, map, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { User } from '../../subscribe/model/user.model';
+import { CurrentUser } from '../model/currentUser.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  currentUser!: User;
   isAuth$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
   getToken() {
-    let token: any = localStorage.getItem('token');
-    return JSON.parse(token);
+    let currentUser: any = localStorage.getItem('currentUser');
+    return JSON.parse(currentUser)?.token;
   }
 
   loginUser(email: string, password: string) {
-    return this.http.post<{ userId: string; token: string }>(
+    return this.http.post<CurrentUser>(
       environment.backendServer + '/api/auth/login',
-      { email: email, password: password }
+      {
+        email: email,
+        password: password,
+      }
     );
   }
 

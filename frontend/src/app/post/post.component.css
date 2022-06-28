@@ -14,10 +14,13 @@
   align-items: flex-start;
   font-weight: bold;
   font-size: 1.2rem;
-  color: white;
+  color: black;
   padding: 5px 5px 0px 5px;
 }
 .post-message {
+  max-height: 50%;
+  overflow: scroll;
+  white-space: pre-line;
   font-size: 1rem;
   padding: 0px 5px 2px 5px;
 }
@@ -38,5 +41,18 @@
   border-radius: 15px;
 }
 .post-date {
-  color: white;
+  color: black;
+}
+.deletepost {
+  width: 50px;
+  align-items: center;
+}
+.deletepost i {
+  vertical-align: -200%;
+  color: black;
+  font-size: 19px;
+}
+.btn-deletepost {
+  background: none;
+  border: none;
 }

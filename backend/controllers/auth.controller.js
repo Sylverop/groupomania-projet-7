@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { UserInfoDTO } = require("../DTO/userinfo.DTO");
 
 
 // Création d'un profil Utilisateur
@@ -43,11 +44,9 @@ exports.logIn = (req, res, next ) => {
         }
         // création d'un token pour l'utilisateur
         
-        res.status(200).json({
-          userId: user._id,
-          token: jwt.sign({ userId: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' } ),
-          message: " Connexion réussie",
-        });
+        res.status(200).json(
+            new UserInfoDTO( user._id, user.name, jwt.sign({ userId: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' } ), " Connexion réussie" )     
+        );
       });
     })
     .catch((err) => {

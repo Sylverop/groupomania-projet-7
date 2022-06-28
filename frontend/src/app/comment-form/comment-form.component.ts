@@ -29,22 +29,14 @@ export class CommentFormComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmit(form: NgForm) {
-    var userIdInLocalStorage = localStorage.getItem('userId');
-    if (userIdInLocalStorage) {
-      this.userService
-        .getUser(JSON.parse(userIdInLocalStorage))
-        .pipe(
-          map((user: any) => {
-            this.commentFormService.addCommentToPost(
-              this.postId,
-              user.name,
-              form.value.comment
-            );
-            this.postListService.notifyCommentAdded();
-          }),
-          catchError((err) => err)
-        )
-        .subscribe();
+    var currentUserInLocalStorage = localStorage.getItem('currentUser');
+    if (currentUserInLocalStorage) {
+      this.commentFormService.addCommentToPost(
+        this.postId,
+        JSON.parse(currentUserInLocalStorage)?.name,
+        form.value.comment
+      );
+      this.postListService.notifyCommentAdded();
     } else {
       console.error(
         'Impossible de recuperer le user name dans le localstorage'
