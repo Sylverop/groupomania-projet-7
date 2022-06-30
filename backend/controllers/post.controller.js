@@ -40,10 +40,9 @@ exports.deletePost = (req, res) => {
   try{
     Post.findByIdAndRemove(req.params.id, (err) => {
     if (!err) res.send("Post supprimé");
-    else res.send(err);
-  
-  });
-  }catch (err) {
+    else res.send(err);  
+  });}
+  catch (err) {
     return res.status(400).send(err);
   }
 

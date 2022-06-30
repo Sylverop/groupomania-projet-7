@@ -14,6 +14,7 @@ export class PostFormService {
       .post<any>(environment.backendServer + '/api/posts', {
         authorName: authorName,
         message: postContent,
+        imageUrl: postImageUrl,
         date: new Date(),
       })
       .subscribe({

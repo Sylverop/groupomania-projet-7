@@ -4,6 +4,7 @@ export class Post {
   _id!: string;
   date!: Date;
   authorName!: String;
+  imageUrl!: string;
   message!: string;
   comments!: Array<Comment>;
   likers!: Array<String>;

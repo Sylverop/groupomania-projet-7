@@ -13,6 +13,7 @@ exports.signUp = (req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       password: hash,
+    
     });
     user.save()
       .then((user) =>
@@ -45,7 +46,7 @@ exports.logIn = (req, res, next ) => {
         // création d'un token pour l'utilisateur
         
         res.status(200).json(
-            new UserInfoDTO( user._id, user.name, jwt.sign({ userId: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' } ), " Connexion réussie" )     
+            new UserInfoDTO( user._id, user.name, jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' } ), " Connexion réussie" )     
         );
       });
     })

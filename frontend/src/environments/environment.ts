@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  backendServer: 'http://localhost:5000'
+  backendServer: 'http://localhost:5000',
+  roles: {
+    admin: 'Admin',
+    member: 'Member',
+  },
 };
 
 /*

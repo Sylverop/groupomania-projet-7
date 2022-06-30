@@ -12,12 +12,12 @@
         </div>
 
         <div class="deletepost">
-          <button class="btn-deletepost" (click)="onDeletePost(post._id)">
-            <i
-              class="fa fa-trash-alt"
-              aria-hidden="true"
-              *ngIf="post.authorName === currentUserName"
-            ></i>
+          <button
+            class="btn-deletepost"
+            (click)="onDeletePost(post._id)"
+            *ngIf="post.authorName === currentUserName"
+          >
+            <i class="fa fa-trash-alt" aria-hidden="true"></i>
           </button>
         </div>
       </div>

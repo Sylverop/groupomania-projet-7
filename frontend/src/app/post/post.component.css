@@ -18,7 +18,7 @@
   padding: 5px 5px 0px 5px;
 }
 .post-message {
-  max-height: 50%;
+  max-height: 100%;
   overflow: scroll;
   white-space: pre-line;
   font-size: 1rem;

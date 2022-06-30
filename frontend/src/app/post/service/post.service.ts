@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { Post } from '../models/post.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/signin/service/auth.service';
 import { environment } from 'src/environments/environment';
 
@@ -38,8 +38,5 @@ export class PostService {
     return this.http.delete<number>(
       environment.backendServer + '/api/posts/' + postId
     );
-
-    //getPostFromStore(): Observable<Post[]> {
-    //   return this.http.get<Post[]>(environment.backendServer + '/api/posts/');
   }
 }

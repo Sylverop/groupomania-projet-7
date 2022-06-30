@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, validate: [isEmail], lowercase: true, unique: true, trim: true},
     password: { type: String, required: true, max: 1024, minlength: 6},   
     likes: { type: [String] },
-    isAdmin: {type: Boolean, defaultValue: false},
+    roles: {type: String },
     },
     {
       timestamps: true,

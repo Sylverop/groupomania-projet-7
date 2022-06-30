@@ -33,4 +33,8 @@ export class AuthService {
     this.isAuth$.next(false);
     localStorage.clear();
   }
+  get isLoggedIn(): boolean {
+    let currentUser: any = localStorage.getItem('currentUser');
+    return currentUser !== null && currentUser !== undefined ? true : false;
+  }
 }
