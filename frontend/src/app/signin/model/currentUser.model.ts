@@ -3,7 +3,7 @@ export class CurrentUser {
   name: string;
   token: string;
   message: string;
-  role!: String;
+  role!: string;
 
   constructor(userInfoDTO: any) {
     this.userId = userInfoDTO.userId;

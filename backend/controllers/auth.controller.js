@@ -2,16 +2,20 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { UserInfoDTO } = require("../DTO/userinfo.DTO");
-
+const cryptojs = require("crypto-js")
 
 // Création d'un profil Utilisateur
 
-exports.signUp = (req, res, next) => {
+exports.signUp = (req, res, next) => { 
+  // chiffrement de l'Email
+  const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, "CLE_SECRETE").toString();
+   console.log(emailCryptoJs);
+   console.log(req.body.name)
   // Chiffrement du password
   bcrypt.hash(req.body.password, 10).then((hash) => {
     const user = new User({
       name: req.body.name,
-      email: req.body.email,
+      email: emailCryptoJs,
       password: hash,
     
     });
@@ -31,7 +35,8 @@ exports.signUp = (req, res, next) => {
 // Connexion au profil Utilisateur
 
 exports.logIn = (req, res, next ) => {
-  User.findOne({ email: req.body.email })
+  const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, "CLE_SECRETE").toString();
+  User.findOne({ email: emailCryptoJs })
 
     .then((user) => {
       if (!user) {

@@ -1,6 +1,10 @@
 const User = require("../models/user.model");
 const fs = require("fs");
 
+
+
+
+
 // CRUD Utilisateur
 // récupération des info de tous les utilisateurs
 exports.getAllUsers = (_req, res) => {

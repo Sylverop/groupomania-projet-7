@@ -20,6 +20,7 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import { SigninComponent } from './signin/signin.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     CommentFormComponent,
     SubscribeComponent,
     SigninComponent,
+    
   ],
   imports: [
     BrowserModule,
