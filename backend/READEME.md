@@ -11,9 +11,9 @@ Développement Backend en Javascript Serveur Node.js, Framework Express, Utilise
 MESURES DE SECURITE MISE EN PLACE
 .Hashage du mot de passe utilisateur avec bcrypt
 
-.Cryptage des emails utilisateurs dans la base de données avec crypto-js
+.helmet est utilisé pour la sécurité 
 
-.Manupulation sécurisée de la base de donnée avec mongoose
+.Cryptage des emails utilisateurs dans la base de données avec crypto-js
 
 .Vérification que l'email utilisateur soit unique dans la base de données avec mongoose-unique-validator
 
@@ -30,7 +30,7 @@ Installer les dépendances avec: npm install
 
 Lancer le frontend avec: npm start
 
-2 - Lancer le backend
+2 - Lancer le frontend
 
 Dans un autre terminal, accéder au dossier du backend
 
@@ -40,4 +40,4 @@ Lancer le backend avec : nodemon server
 
 3 - Le frontend est accessible à l'adresse http://localhost:4200
 
-4 - Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:3000
+4 - Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:5000
