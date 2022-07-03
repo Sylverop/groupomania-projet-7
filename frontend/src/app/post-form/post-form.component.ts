@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm, ReactiveFormsModule } from '@angular/forms';
-import { User } from '../subscribe/model/user.model';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { PostListService } from '../post-list/service/post-list.service';
-
+import { AuthService } from '../signin/service/auth.service';
 import { PostFormService } from './service/post-form.service';
 
 @Component({
@@ -11,31 +15,45 @@ import { PostFormService } from './service/post-form.service';
   styleUrls: ['./post-form.component.css'],
 })
 export class PostFormComponent implements OnInit {
-  currentUser!: User;
-  fileToUpload = File;
+  postForm!: FormGroup;
+  submitted = false;
   constructor(
     private postFormService: PostFormService,
     private postListService: PostListService,
-    private reactiveForm: ReactiveFormsModule
-  ) {}
+    private reactiveForm: ReactiveFormsModule,
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {
+    this.postForm = this.formBuilder.group({
+      postContent: ['', Validators.required],
+      postImage: [''],
+      fileSource: ['', Validators.required],
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  async onSubmit(form: NgForm) {
-    var currentUserInLocalStorage: any = localStorage.getItem('currentUser');
-    if (currentUserInLocalStorage) {
-      this.postFormService.addPost(
-        form.value.postContent,
-        form.value.postImage,
-        JSON.parse(currentUserInLocalStorage)?.name
-      );
-      this.postListService.notifyPostAdded();
-    } else {
-      console.error('Impossible de recuperer le user id dans le localstorage');
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.postForm.patchValue({
+        fileSource: file,
+      });
     }
   }
-  onFileSelected(event: Event) {
-    // const file = (event.target as HTMLInputElement).files![0];
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.postForm.valid) {
+      const formData = new FormData();
+      formData.append('message', this.postForm.get('postContent')?.value);
+      formData.append('authorName', this.authService.getCurrentUser().name);
+      formData.append('image', this.postForm.get('fileSource')?.value);
+
+      this.postFormService.addPost(formData).subscribe((success) => {
+        this.postForm.reset();
+        formData.delete;
+      });
+    }
   }
-  envoieDuFichier() {}
 }

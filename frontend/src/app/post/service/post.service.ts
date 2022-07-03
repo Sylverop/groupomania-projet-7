@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { Post } from '../models/post.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/signin/service/auth.service';
@@ -14,7 +14,7 @@ export class PostService {
   getPostById(id: string) {
     return this.http
       .get<Post>(environment.backendServer + '/api/posts/' + id)
-      .pipe(catchError((error) => throwError(error.error.message)));
+      .pipe(catchError((error) => throwError(() => error.error.message)));
   }
 
   likePost(postId: string, userId: string) {

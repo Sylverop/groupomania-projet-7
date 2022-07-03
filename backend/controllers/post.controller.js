@@ -1,6 +1,6 @@
 const Post = require("../models/post.model");
 const User = require("../models/user.model");
-
+const fs = require('fs');
 // CRUD post
 // récupération des posts
 exports.getPost = (_req, res) => {
@@ -10,8 +10,14 @@ exports.getPost = (_req, res) => {
     .catch((err) => res.status(400).json({ err }));
 };
 // Création d'un post
-exports.createPost = (req, res) => {
-  const post = new Post({ ...req.body });
+exports.createPost = (req, res, next) => {
+  const postObject = req.body.post;
+  const post = new Post({
+      ...postObject,
+      message: req.body.message,
+    authorName: req.body.authorName ,    
+    imageUrl: `api/images/${req.file.filename}`,
+    date: new Date})    
   post
     .save()
     .then(() => res.status(201).json({ message: "Post créé" }))
@@ -20,34 +26,31 @@ exports.createPost = (req, res) => {
 
 //Modification d'un post
 exports.updatePost = (req, res) => {
-  const updateMessage = {
-    message: req.body.message,
-  };
-
-  Post.findByIdAndUpdate(
-    req.params.id,
-    { $set: updateMessage },
-    { new: true },
-    (err) => {
-      if (!err) res.send("Post modifié");
-      else console.log(err);
-    }
-  );
+  const postObject = req.file ? {
+    ...JSON.parse(req.body.post),
+    imageUrl: `api/images/${req.file.filename}`
+} : {...req.body } 
+ 
+Post.updateOne({ _id: req.params.id }, {...postObject, _id: req.params.id })
+  .then(res.status(200).json({ message: "poste modifiée" }))
+  .catch((error) => res.status(400).json({ error }))
 };
 
 //Suppression d'un post
 exports.deletePost = (req, res) => {
-  try{
-    Post.findByIdAndRemove(req.params.id, (err) => {
-    if (!err) res.send("Post supprimé");
-    else res.send(err);  
-  });}
-  catch (err) {
-    return res.status(400).send(err);
-  }
+  Post.findOne({ _id: req.params.id })
+  .then((post) => {
 
+      const fileName = post.imageUrl.split('/images/')[1];
+      fs.unlink(`images/${fileName}`, () => {
+          Post.deleteOne({ _id: req.params.id })
+              .then(() => res.status(200).json({ message: "La publication a été supprimée !" }))
+              .catch((error) => res.status(400).json({ error }));
+      });
+
+  })
+  .catch((error) => res.status(500).json({ error }))
 };
-
 // Ajout d'un like et enregistrement de l'utilisateur dans [likers]
 exports.likePost = (req, res) => {
   try {

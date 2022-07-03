@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, tap } from 'rxjs';
-import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../../subscribe/model/user.model';
 import { CurrentUser } from '../model/currentUser.model';
 
 @Injectable({
@@ -27,6 +25,10 @@ export class AuthService {
         password: password,
       }
     );
+  }
+  getCurrentUser(): CurrentUser {
+    let userInLocalStorage: any = localStorage.getItem('currentUser');
+    return JSON.parse(userInLocalStorage);
   }
 
   logout() {

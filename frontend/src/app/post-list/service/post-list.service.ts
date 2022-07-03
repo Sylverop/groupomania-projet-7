@@ -14,7 +14,7 @@ export class PostListService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<any> {
-    return this.http.get(environment.backendServer + '/api/posts/');
+    return this.http.get<any>(environment.backendServer + '/api/posts/');
   }
 
   notifyPostAdded() {

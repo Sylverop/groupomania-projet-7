@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError, of } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { PostListService } from '../post-list/service/post-list.service';
-import { User } from '../subscribe/model/user.model';
 import { AuthService } from './service/auth.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { AuthService } from './service/auth.service';
 export class SigninComponent implements OnInit {
   loginForm!: FormGroup;
   userId!: string;
-
+  userUnLoginMessage: string = '';
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -40,7 +40,12 @@ export class SigninComponent implements OnInit {
           this.router.navigate(['/posts']).then(() => {
             // TODO : remplacer par evenement
             window.location.reload();
+            this.userUnLoginMessage = 'Utilisateur authentifier';
           });
+        }),
+        catchError((err) => {
+          this.userUnLoginMessage = "Impossible d'authentifier l'utilisateur";
+          return of();
         })
       )
       .subscribe();

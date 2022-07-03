@@ -1,0 +1,18 @@
+.title {
+  padding: 20px 0px 10px 20px;
+  border-bottom: 1px solid #eeeeee;
+  font-weight: 500;
+}
+
+.member {
+  padding: 20px 0px 10px 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.member i {
+  padding-right: 10px;
+}
+
+.role {
+  font-weight: 300;
+}

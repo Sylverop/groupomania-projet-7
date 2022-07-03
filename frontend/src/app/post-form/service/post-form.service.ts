@@ -1,29 +1,29 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import { map, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostFormService {
-  constructor(private http: HttpClient) {}
+  subjectNotifier: Subject<null> = new Subject<null>();
 
-  addPost(postContent: string, postImageUrl: string, authorName: any) {
-    this.http
-      .post<any>(environment.backendServer + '/api/posts', {
-        authorName: authorName,
-        message: postContent,
-        imageUrl: postImageUrl,
-        date: new Date(),
-      })
-      .subscribe({
-        next: (data) => {
-          console.log(data);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+  constructor(private http: HttpClient, public router: Router) {}
+
+  addPost(post: any): Observable<Boolean> {
+    return this.http
+      .post<any>(`${environment.backendServer}/api/posts/`, post)
+      .pipe(
+        map((addedPost: any) => {
+          if (addedPost != null) {
+            this.subjectNotifier.next;
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 }

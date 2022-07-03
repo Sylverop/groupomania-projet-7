@@ -19,7 +19,7 @@
 }
 .post-message {
   max-height: 100%;
-  overflow: scroll;
+  overflow: auto;
   white-space: pre-line;
   font-size: 1rem;
   padding: 0px 5px 2px 5px;
@@ -37,7 +37,6 @@
   color: #fd2d01;
 }
 .post-comment {
-  background-color: #5d5f6ba8;
   border-radius: 15px;
 }
 .post-date {
@@ -48,11 +47,22 @@
   align-items: center;
 }
 .deletepost i {
-  vertical-align: -200%;
   color: black;
   font-size: 19px;
 }
 .btn-deletepost {
+  background: none;
+  border: none;
+}
+.modify-post {
+  width: 50px;
+  align-items: center;
+}
+.modify-post i {
+  color: black;
+  font-size: 19px;
+}
+.btn-modify-post {
   background: none;
   border: none;
 }

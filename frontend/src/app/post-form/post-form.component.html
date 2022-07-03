@@ -1,25 +1,38 @@
 <div class="post-form-wrapper">
   <div class="post-form-container">
     <div class="post-form">
-      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <form
+        [formGroup]="postForm"
+        (ngSubmit)="onSubmit()"
+        enctype="multipart/form-data"
+      >
         <div class="row">
           <div class="col">
             <label for="postContent" class="form-post-label m-2"
-              >Contenu du poste</label
+              >Nouveau post :</label
             >
             <textarea
               class="form-control"
               id="form-post"
               rows="3"
               name="postContent"
-              ngModel
+              formControlName="postContent"
+              required
             ></textarea>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <input type="file" name="postImage" ngModel />
-            <!-- (change)="onFileSelected($event)" -->
+            <input
+              type="file"
+              class="form-control-file"
+              id="postImage"
+              name="postImage"
+              formControlName="postImage"
+              accept=".png, .jpg, .jpeg, .gif"
+              (change)="onFileChange($event)"
+              required
+            />
           </div>
         </div>
         <div class="row">

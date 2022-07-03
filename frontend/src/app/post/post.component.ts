@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, Observable } from 'rxjs';
+import { catchError, map, Observable, take, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { PostListService } from '../post-list/service/post-list.service';
+import { DateHelper } from '../shared/date.helper';
+import { CurrentUser } from '../signin/model/currentUser.model';
+import { AuthService } from '../signin/service/auth.service';
 import { Post } from './models/post.model';
 import { PostService } from './service/post.service';
 
@@ -19,16 +23,28 @@ export class PostComponent implements OnInit {
   authorName!: string;
   currentUserName!: string;
   posts!: Observable<Post[]>;
+  environment;
+  postImage!: string;
+  currentUser: CurrentUser;
+
   constructor(
     private postService: PostService,
     private postListService: PostListService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.currentUser = this.authService.getCurrentUser();
+    this.environment = environment;
+  }
 
   ngOnInit() {
     var userInLocalStorage: any = localStorage.getItem('currentUser');
     this.currentUserId = JSON.parse(userInLocalStorage)?.userId;
     this.currentUserName = JSON.parse(userInLocalStorage)?.name;
+    this.postImage = environment.backendServer + '/' + this.post.imageUrl;
+  }
+  isPostToday() {
+    return DateHelper.isToday(this.post.date);
   }
 
   onLikeOrDislike(postId: string, liked: boolean) {
@@ -52,10 +68,6 @@ export class PostComponent implements OnInit {
     this.postListService.notifyLikeOrUnlike();
   }
 
-  /* getSoftPosts() {
-    this.posts = this.postService.getPostFromStore();
-  } */
-
   onDeletePost(postId: string) {
     this.postService
       .deletePost(postId)
@@ -68,5 +80,8 @@ export class PostComponent implements OnInit {
       // TODO : remplacer par evenement
       window.location.reload();
     });
+  }
+  onclickModify(postId: string) {
+    this.router.navigate(['/modifypost']);
   }
 }

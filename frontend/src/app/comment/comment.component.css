@@ -1,7 +1,3 @@
-.comment {
-  border-radius: 15px;
-  box-shadow: lightgray 4px 4px 20px;
-}
 .comment-author {
   font-size: 0.8em;
   font-weight: bold;
@@ -15,4 +11,7 @@
 .creationDate {
   font-size: 14px;
   font-weight: 300;
+}
+.comment-container {
+  width: 100%;
 }

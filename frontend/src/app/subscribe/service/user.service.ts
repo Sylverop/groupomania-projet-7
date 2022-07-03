@@ -18,6 +18,6 @@ export class UserService {
   }
 
   getUser(id: string) {
-    return this.http.get(environment.backendServer + '/api/users/' + id);
+    return this.http.get(environment.backendServer + '/api/users/');
   }
 }

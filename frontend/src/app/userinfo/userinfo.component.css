@@ -1,0 +1,22 @@
+.userinfo-photo-bloc {
+  background-color: #ffd7d7;
+}
+
+.userphoto img {
+  border: 3px solid #ffffff;
+}
+
+.username {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.category-label {
+  font-size: 18px;
+  color: #686868;
+}
+
+.category-count {
+  font-size: 18px;
+  font-weight: 500;
+}

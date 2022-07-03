@@ -7,23 +7,52 @@
             {{ post.authorName }}
           </div>
           <div class="post-date text-start p-1">
-            {{ post.date | date: "le d MMMM yyyy à HH:mm " }}
+            <span class="date" *ngIf="!isPostToday()">
+              le {{ post.date | date: "dd/MM/YYYY à HH:mm" }}</span
+            >
+            <span class="date" *ngIf="isPostToday()">
+              aujourd'hui {{ post.date | date: " à HH:mm" }}</span
+            >
           </div>
         </div>
-
+        <!--  -->
         <div class="deletepost">
           <button
-            class="btn-deletepost"
-            (click)="onDeletePost(post._id)"
-            *ngIf="post.authorName === currentUserName"
+            class="btn-modify-post"
+            alt="modifier ce poste"
+            (click)="onclickModify(post._id)"
+            *ngIf="
+              post.authorName === currentUserName ||
+              currentUser.role === environment.roles.admin
+            "
           >
-            <i class="fa fa-trash-alt" aria-hidden="true"></i>
+            <i class="fas fa-edit" aria-hidden="true"></i>
+          </button>
+
+          <button
+            class="btn-deletepost"
+            alt="supprimer"
+            (click)="onDeletePost(post._id)"
+            *ngIf="
+              post.authorName === currentUserName ||
+              currentUser.role === environment.roles.admin
+            "
+          >
+            <i class="fa fa-trash-alt" alt="supprimer" aria-hidden="true"></i>
           </button>
         </div>
       </div>
-      <div class="post-propriety d-flex flex-column justify-content-between">
+      <div
+        class="post-propriety d-flex flex-column justify-content-between p-4"
+      >
         <div class="post-message text-start">
           {{ post.message }}
+        </div>
+        <div>
+          <img
+            [src]="postImage | secureStatic | async"
+            class="img-fluid mw-80"
+          />
         </div>
         <div class="post-likes text-start p-2">
           <i class="fa-solid fa-heart"></i>
@@ -41,11 +70,13 @@
           </button>
         </div>
       </div>
-      <div class="post-comment shadow-sm">
-        <app-comment
-          [comment]="comment"
-          *ngFor="let comment of post.comments"
-        ></app-comment>
+      <div class="row comment-form-container">
+        <div class="post-comment justify-content-end">
+          <app-comment
+            [comment]="comment"
+            *ngFor="let comment of post.comments"
+          ></app-comment>
+        </div>
         <app-comment-form [postId]="post._id"></app-comment-form>
       </div>
     </div>

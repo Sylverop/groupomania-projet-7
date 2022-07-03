@@ -9,15 +9,12 @@ const cryptojs = require("crypto-js")
 exports.signUp = (req, res, next) => { 
   // chiffrement de l'Email
   const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, "CLE_SECRETE").toString();
-   console.log(emailCryptoJs);
-   console.log(req.body.name)
   // Chiffrement du password
   bcrypt.hash(req.body.password, 10).then((hash) => {
     const user = new User({
       name: req.body.name,
       email: emailCryptoJs,
-      password: hash,
-    
+      password: hash,      
     });
     user.save()
       .then((user) =>
@@ -51,7 +48,7 @@ exports.logIn = (req, res, next ) => {
         // création d'un token pour l'utilisateur
         
         res.status(200).json(
-            new UserInfoDTO( user._id, user.name, jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' } ), " Connexion réussie" )     
+            new UserInfoDTO( user._id, user.name, jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' } ), " Connexion réussie", user.role )     
         );
       });
     })

@@ -1,0 +1,52 @@
+<app-post [post]="posts"></app-post>
+<!-- TODO : a retravaillé l'ajout du post dans le component -->
+<div class="post-form-wrapper">
+  <div class="post-form-container">
+    <div class="post-form">
+      <form
+        [formGroup]="postFormUpdate"
+        (ngSubmit)="onUpdateSubmit()"
+        enctype="multipart/form-data"
+      >
+        <div class="row">
+          <div class="col">
+            <label for="postContent" class="form-post-label m-2"
+              >Nouveau post :</label
+            >
+            <textarea
+              class="form-control"
+              id="form-post"
+              rows="3"
+              name="postContent"
+              formControlName="postContent"
+              required
+            ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input
+              type="file"
+              class="form-control-file"
+              id="postImage"
+              name="postImage"
+              formControlName="postImage"
+              accept=".png, .jpg, .jpeg, .gif"
+              (change)="onFileChange($event)"
+              required
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input
+              type="submit"
+              class="btn-postform col-md-6"
+              value="Publier"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

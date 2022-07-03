@@ -1,0 +1,25 @@
+<div class="home-members-wrapper">
+  <div class="home-members-card bg-white shadow-sm">
+    <div class="row">
+      <div class="col">
+        <div class="title">Nos membres</div>
+      </div>
+    </div>
+    <div class="row" *ngFor="let member of members">
+      <div class="col">
+        <div class="member">
+          <i
+            class="fa-solid fa-user-lock"
+            *ngIf="member.role == environment.roles.admin"
+          ></i>
+          <i
+            class="fa-solid fa-user"
+            *ngIf="member.role == environment.roles.member"
+          ></i>
+          {{ member.name }} -
+          <span class="role">{{ member.role }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

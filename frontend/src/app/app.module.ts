@@ -10,7 +10,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FooterComponent } from './footer/footer.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { CommentComponent } from './comment/comment.component';
@@ -19,7 +18,10 @@ import { registerLocaleData } from '@angular/common';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { SigninComponent } from './signin/signin.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-
+import { MembersComponent } from './members/members.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { SecureStaticPipe } from './secure-static.pipe';
+import { PostFormUpdateComponent } from './post-form-update/post-form-update.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +30,14 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     PostComponent,
     PostFormComponent,
     HeaderComponent,
-    FooterComponent,
     CommentComponent,
     CommentFormComponent,
     SubscribeComponent,
     SigninComponent,
-    
+    MembersComponent,
+    UserinfoComponent,
+    SecureStaticPipe,
+    PostFormUpdateComponent,
   ],
   imports: [
     BrowserModule,
