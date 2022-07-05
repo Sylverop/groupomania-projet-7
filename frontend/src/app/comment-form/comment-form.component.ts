@@ -1,13 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from '../subscribe/model/user.model';
-import { CommentService } from '../comment/service/comment.service';
+
 import { PostListService } from '../post-list/service/post-list.service';
 
 import { CommentFormService } from './service/comment-form.service';
-import { map } from 'rxjs/internal/operators/map';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { UserService } from '../subscribe/service/user.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -19,8 +16,7 @@ export class CommentFormComponent implements OnInit {
 
   constructor(
     private commentFormService: CommentFormService,
-    private postListService: PostListService,
-    private userService: UserService
+    private postListService: PostListService
   ) {}
 
   @Input()

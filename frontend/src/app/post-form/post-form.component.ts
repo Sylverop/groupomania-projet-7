@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { PostListService } from '../post-list/service/post-list.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { AuthService } from '../signin/service/auth.service';
 import { PostFormService } from './service/post-form.service';
 
@@ -17,10 +12,10 @@ import { PostFormService } from './service/post-form.service';
 export class PostFormComponent implements OnInit {
   postForm!: FormGroup;
   submitted = false;
+  fileName!: '';
   constructor(
     private postFormService: PostFormService,
-    private postListService: PostListService,
-    private reactiveForm: ReactiveFormsModule,
+
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {
@@ -36,9 +31,12 @@ export class PostFormComponent implements OnInit {
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.postForm.patchValue({
-        fileSource: file,
-      });
+      if (file) {
+        this.fileName = file.name;
+        this.postForm.patchValue({
+          fileSource: file,
+        });
+      }
     }
   }
 

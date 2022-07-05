@@ -1,6 +1,6 @@
 <div class="post-form-wrapper">
   <div class="post-form-container">
-    <div class="post-form">
+    <div class="post-form d-flex justify-content-center w-100 bg-light">
       <form
         [formGroup]="postForm"
         (ngSubmit)="onSubmit()"
@@ -9,41 +9,47 @@
         <div class="row">
           <div class="col">
             <label for="postContent" class="form-post-label m-2"
-              >Nouveau post :</label
-            >
-            <textarea
-              class="form-control"
-              id="form-post"
-              rows="3"
-              name="postContent"
-              formControlName="postContent"
-              required
-            ></textarea>
+              >Nouvelle publication :
+              <textarea
+                class="form-control"
+                rows="3"
+                name="postContent"
+                formControlName="postContent"
+                required
+              ></textarea>
+            </label>
           </div>
         </div>
         <div class="row">
           <div class="col">
+            <label for="postImage"></label>
             <input
               type="file"
               class="form-control-file"
               id="postImage"
-              name="postImage"
               formControlName="postImage"
+              alt="image"
               accept=".png, .jpg, .jpeg, .gif"
               (change)="onFileChange($event)"
+              #fileUpload
               required
             />
+
+            <div class="file-upload">
+              {{ fileName || "Aucune image upload." }}
+            </div>
+            <button
+              aria-label="ajouter une image"
+              color="primary"
+              class="upload-btn"
+              (click)="fileUpload.click()"
+            >
+              Ajoutez une image
+            </button>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <input
-              type="submit"
-              class="btn-postform col-md-6"
-              value="Publier"
-            />
-          </div>
-        </div>
+
+        <input type="submit" class="btn-postform col-md-6" value="publiez" />
       </form>
     </div>
   </div>

@@ -19,5 +19,5 @@ export class CommentComponent implements OnInit {
       this.ngOnInit();
     });
 
-  async ngOnInit() {}
+  ngOnInit() {}
 }

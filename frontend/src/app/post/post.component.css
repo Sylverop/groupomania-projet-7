@@ -1,11 +1,10 @@
 .post-wrapper {
   border-radius: 5px;
-  background-color: rgba(128, 128, 128, 0.635);
+  background-color: rgba(196, 6, 6, 0.635);
 }
 .post-propriety {
   border-radius: 8px;
-  box-shadow: rgb(116, 114, 114) 4px 4px 20px;
-  border: solid 3px rgba(128, 128, 128, 0.635);
+  border: solid 2px rgba(128, 128, 128, 0.635);
   background-color: white;
   color: black;
   min-height: 150px;
@@ -65,4 +64,8 @@
 .btn-modify-post {
   background: none;
   border: none;
+}
+img {
+  width: 100%;
+  height: 80%;
 }

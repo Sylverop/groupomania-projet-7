@@ -1,52 +1,100 @@
-<app-post [post]="posts"></app-post>
-<!-- TODO : a retravaillé l'ajout du post dans le component -->
-<div class="post-form-wrapper">
-  <div class="post-form-container">
-    <div class="post-form">
-      <form
-        [formGroup]="postFormUpdate"
-        (ngSubmit)="onUpdateSubmit()"
-        enctype="multipart/form-data"
-      >
-        <div class="row">
-          <div class="col">
-            <label for="postContent" class="form-post-label m-2"
-              >Nouveau post :</label
+<div class="post-wrapper m-2">
+  <div class="row">
+    <div class="col-6 p-4">
+      <div class="d-flex justify-content-between flex-wrap">
+        <div class="">
+          <div class="post-author-name text-start">
+            {{ post.authorName }}
+          </div>
+          <div class="post-date text-start p-1">
+            <span class="date" *ngIf="!isPostToday()">
+              le {{ post.date | date: "dd/MM/YYYY à HH:mm" }}</span
             >
-            <textarea
-              class="form-control"
-              id="form-post"
-              rows="3"
-              name="postContent"
-              formControlName="postContent"
-              required
-            ></textarea>
+            <span class="date" *ngIf="isPostToday()">
+              aujourd'hui {{ post.date | date: " à HH:mm" }}</span
+            >
+          </div>
+          <div class="post-date text-start p-1"></div>
+        </div>
+        <div class="modifyanddelete"></div>
+      </div>
+      <div
+        class="post-propriety d-flex flex-column justify-content-between p-4"
+      >
+        <div class="post-message text-start">
+          {{ post.message }}
+        </div>
+        <div>
+          <img
+            [src]="postImage | secureStatic | async"
+            class="img-fluid mw-80"
+          />
+        </div>
+        <div class="post-likes text-start p-2">
+          <i class="fa-solid fa-heart"></i>
+          {{ post.likers.length }}
+        </div>
+      </div>
+      <div class="row comment-form-container">
+        <div class="post-comment justify-content-end"></div>
+      </div>
+    </div>
+
+    <div class="main-wrapper-form col-6 bg-light">
+      <div class="post-form-wrapper">
+        <div class="post-form-container">
+          <div class="post-form d-flex justify-content-center">
+            <form
+              [formGroup]="postForm"
+              (ngSubmit)="onUpdateSubmit()"
+              enctype="multipart/form-data"
+            >
+              <div class="row">
+                <div class="col">
+                  <label class="form-post-label m-2"
+                    >Modifiez publication :
+                    <input
+                      type="text"
+                      class="form-control"
+                      rows="3"
+                      name="postContent"
+                      formControlName="message"
+                      required
+                    />
+                  </label>
+                </div>
+                <div class="post-message text-start"></div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="postImage"></label>
+                  <input
+                    type="file"
+                    class="form-control-file"
+                    id="postImage"
+                    accept=".png, .jpg, .jpeg, .gif"
+                    formControlName="postImage"
+                    #fileUpload
+                    required
+                  />
+
+                  <div class="file-upload"></div>
+                  <button
+                    color="primary"
+                    class="upload-btn"
+                    (click)="fileUpload.click()"
+                  >
+                    Ajoutez une image
+                  </button>
+                </div>
+                <div>
+                  <input type="submit" class="btn-postform" value="Editez" />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <input
-              type="file"
-              class="form-control-file"
-              id="postImage"
-              name="postImage"
-              formControlName="postImage"
-              accept=".png, .jpg, .jpeg, .gif"
-              (change)="onFileChange($event)"
-              required
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <input
-              type="submit"
-              class="btn-postform col-md-6"
-              value="Publier"
-            />
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

@@ -11,12 +11,6 @@ import { environment } from 'src/environments/environment';
 export class PostService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  getPostById(id: string) {
-    return this.http
-      .get<Post>(environment.backendServer + '/api/posts/' + id)
-      .pipe(catchError((error) => throwError(() => error.error.message)));
-  }
-
   likePost(postId: string, userId: string) {
     return this.http.patch<any>(
       environment.backendServer + '/api/posts/' + postId + '/like',

@@ -26,7 +26,7 @@ export class PostComponent implements OnInit {
   environment;
   postImage!: string;
   currentUser: CurrentUser;
-
+  alt!: string;
   constructor(
     private postService: PostService,
     private postListService: PostListService,
@@ -80,8 +80,5 @@ export class PostComponent implements OnInit {
       // TODO : remplacer par evenement
       window.location.reload();
     });
-  }
-  onclickModify(postId: string) {
-    this.router.navigate(['/modifypost']);
   }
 }

@@ -15,12 +15,10 @@
             >
           </div>
         </div>
-        <!--  -->
-        <div class="deletepost">
+        <div class="modifyanddelete">
           <button
             class="btn-modify-post"
-            alt="modifier ce poste"
-            (click)="onclickModify(post._id)"
+            [routerLink]="['/modifyPost', post._id]"
             *ngIf="
               post.authorName === currentUserName ||
               currentUser.role === environment.roles.admin
@@ -31,7 +29,6 @@
 
           <button
             class="btn-deletepost"
-            alt="supprimer"
             (click)="onDeletePost(post._id)"
             *ngIf="
               post.authorName === currentUserName ||
@@ -50,6 +47,7 @@
         </div>
         <div>
           <img
+            [alt]="alt"
             [src]="postImage | secureStatic | async"
             class="img-fluid mw-80"
           />
@@ -58,6 +56,7 @@
           <i class="fa-solid fa-heart"></i>
           {{ post.likers.length }}
           <button
+            aria-label="boutton Likes"
             (click)="
               onLikeOrDislike(post._id, post.likers.includes(currentUserId))
             "

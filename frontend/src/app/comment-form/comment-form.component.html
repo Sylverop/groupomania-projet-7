@@ -1,13 +1,13 @@
-<div class="comment-form-wrapper p-2">
+<div class="comment-form-wrapper d-flex flex-column justify-content-center p-2">
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-    <label for="comment" class="form-label">Commentaire :</label>
-    <textarea
-      class="form-control"
-      id="comment"
-      rows="3"
-      name="comment"
-      ngModel
-    ></textarea>
-    <input type="submit" class="btn-commenter" value="Commenter" />
+    <label class="form-label"
+      >Commentaire :
+      <textarea
+        class="form-control"
+        rows="3"
+        name="comment"
+        ngModel
+      ></textarea></label
+    ><br /><input type="submit" class="btn-commenter" value="Commenter" />
   </form>
 </div>

@@ -16,11 +16,33 @@
   background-color: #fd2d01;
   border: solid 1px white;
 }
-.post-form-box {
-  border-top: 3px solid #e75348;
-}
 
+.post-form {
+  border-top: solid 4px #fd2d01;
+  border-radius: 5px;
+  border-bottom: solid 4px #fd2d01;
+}
 .post-form-content label {
   font-weight: 500;
   padding-bottom: 10px;
+}
+.file-upload {
+  font-family: "raleway", cursive;
+  font-weight: 600;
+  width: 240px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #ffd7d7;
+}
+.upload-btn {
+  font-family: "raleway", cursive;
+  font-weight: 600;
+  width: 240px;
+  color: white;
+  border-radius: 10px;
+  border: solid 1px #fd2d01;
+  background-color: #fd2d01;
+}
+.form-control-file {
+  display: none;
 }

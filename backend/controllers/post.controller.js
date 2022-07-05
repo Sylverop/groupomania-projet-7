@@ -9,6 +9,12 @@ exports.getPost = (_req, res) => {
     .then((posts) => res.status(200).json(posts))
     .catch((err) => res.status(400).json({ err }));
 };
+
+exports.getPostById = (req, res) => {
+  Post.findOne({_id: req.params.id })
+    .then((post) => res.status(200).json(post))
+    .catch((err) => res.status(400).json(err));
+  }
 // Création d'un post
 exports.createPost = (req, res, next) => {
   const postObject = req.body.post;
