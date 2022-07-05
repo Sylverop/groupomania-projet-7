@@ -9,7 +9,7 @@
   background-color: #4e5166;
   border: none;
   margin: 10px;
-  width: 33%;
+  width: 97%;
   height: 45px;
 }
 .btn-postform:hover {
@@ -27,7 +27,7 @@
 .file-upload {
   font-family: "raleway", cursive;
   font-weight: 600;
-  width: 240px;
+
   border-radius: 10px;
   text-align: center;
   background-color: #ffd7d7;
@@ -35,7 +35,7 @@
 .upload-btn {
   font-family: "raleway", cursive;
   font-weight: 600;
-  width: 240px;
+  width: 100%;
   color: white;
   border-radius: 10px;
   border: solid 1px #fd2d01;
@@ -44,10 +44,7 @@
 .form-control-file {
   display: none;
 }
-.post-wrapper {
-  border-radius: 5px;
-  background-color: rgba(196, 6, 6, 0.635);
-}
+
 .btn-back {
   border-radius: 5px;
   background-color: #ffd7d7;
@@ -56,71 +53,5 @@
   font-weight: 600;
   height: 40px;
   cursor: pointer;
-}
-.post-propriety {
-  border-radius: 8px;
-  border: solid 2px rgba(128, 128, 128, 0.635);
-  background-color: white;
-  color: black;
-  min-height: 400px;
-}
-.post-author-name {
-  align-items: flex-start;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: black;
-  padding: 5px 5px 0px 5px;
-}
-.post-message {
-  max-height: 100%;
-  overflow: auto;
-  white-space: pre-line;
-  font-size: 1rem;
-  padding: 0px 5px 2px 5px;
-}
-.btn-like {
-  border-radius: 3px;
-  color: white;
-  background-color: #fd2b0171;
-  border: none;
-}
-.post-likes {
-  border-top: solid 1px rgba(128, 128, 128, 0.635);
-}
-.post-likes i {
-  color: #fd2d01;
-}
-.post-comment {
-  border-radius: 15px;
-}
-.post-date {
-  color: black;
-}
-.deletepost {
-  width: 50px;
-  align-items: center;
-}
-.deletepost i {
-  color: black;
-  font-size: 19px;
-}
-.btn-deletepost {
-  background: none;
-  border: none;
-}
-.modify-post {
-  width: 50px;
-  align-items: center;
-}
-.modify-post i {
-  color: black;
-  font-size: 19px;
-}
-.btn-modify-post {
-  background: none;
-  border: none;
-}
-img {
-  width: 100%;
-  height: 80%;
+  margin-top: 50px;
 }

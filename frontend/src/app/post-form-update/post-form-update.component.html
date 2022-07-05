@@ -6,10 +6,10 @@
         (ngSubmit)="onSubmit()"
         enctype="multipart/form-data"
       >
-        <div class="row">
-          <div class="col">
+        <div class="row text-center">
+          <div class="col-9">
             <label for="postContent" class="form-post-label m-2"
-              >Nouvelle publication :
+              >Modifiez publication :
               <textarea
                 class="form-control"
                 rows="3"
@@ -20,9 +20,11 @@
               </textarea>
             </label>
           </div>
+          <button class="btn-back col-3" routerLink="/posts">Retour</button>
         </div>
+
         <div class="row">
-          <div class="col">
+          <div class="col justify-content-center">
             <label for="postImage"></label>
             <input
               type="file"
@@ -36,13 +38,10 @@
               required
             />
             <div>
-              <img
-                [src]="postImage | secureStatic | async"
-                class="img-fluid mw-80"
-              />
+              <img [src]="postImage | secureStatic | async" class="img-fluid" />
             </div>
             <div class="file-upload">
-              {{ fileName || "Aucune image upload." }}
+              {{ fileName || "Aucune image sélectionnée." }}
             </div>
             <button
               aria-label="ajouter une image"
@@ -50,12 +49,14 @@
               class="upload-btn"
               (click)="fileUpload.click()"
             >
-              Ajoutez une image
-            </button>
+              Modifiez l'image</button
+            ><input
+              type="submit"
+              class="btn-postform text-center"
+              value="Editez"
+            />
           </div>
         </div>
-
-        <input type="submit" class="btn-postform col-md-6" value="publiez" />
       </form>
     </div>
   </div>

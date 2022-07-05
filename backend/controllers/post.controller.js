@@ -10,6 +10,8 @@ exports.getPost = (_req, res) => {
     .catch((err) => res.status(400).json({ err }));
 };
 
+// récupération d'un post
+
 exports.getPostById = (req, res) => {
   Post.findOne({_id: req.params.id })
     .then((post) => res.status(200).json(post))

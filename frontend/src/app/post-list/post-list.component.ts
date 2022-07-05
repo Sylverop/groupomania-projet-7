@@ -23,23 +23,23 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   postSubscription: Subscription = this.postListService.postTopic.subscribe(
     (notified) => {
-      this.ngOnInit();
+      this.listPosts();
     }
   );
 
   commentSubscription: Subscription =
     this.postListService.commentTopic.subscribe((notified) => {
-      this.ngOnInit();
+      this.listPosts();
     });
 
   likeSubscription: Subscription = this.postListService.likeTopic.subscribe(
     (notified) => {
-      this.ngOnInit();
+      this.listPosts();
     }
   );
 
-  async ngOnInit() {
-    await this.listPosts();
+  ngOnInit() {
+    this.listPosts();
     this.commentService.notifyCommentAdded();
   }
 
@@ -47,7 +47,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postListService
       .getPosts()
       .pipe(
-        map((data: any) => {
+        await map((data: any) => {
           this.posts = data;
         }),
         catchError((err) => err)

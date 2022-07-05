@@ -12,4 +12,5 @@ export class CommentService {
   notifyCommentAdded() {
     this.commentTopic.next(null);
   }
+  deleteComment() {}
 }

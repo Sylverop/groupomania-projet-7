@@ -41,7 +41,7 @@ Installer les dépendances: npm install
 
 Lancer le backend avec : nodemon server
 
-3 - Le frontend est accessible à l'adresse http://localhost:4200
+3 - Le frontend est accessible à l'adresse http://groupomania.intra
 
 4 - Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:5000
 

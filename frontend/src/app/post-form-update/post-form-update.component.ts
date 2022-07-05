@@ -20,7 +20,8 @@ export class PostFormUpdateComponent implements OnInit {
   constructor(
     private postFormUpdateService: PostFormUpdateService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.postForm = this.formBuilder.group({
       postContent: ['', Validators.required],
@@ -67,6 +68,7 @@ export class PostFormUpdateComponent implements OnInit {
           this.postForm.reset();
           formData.delete;
         });
+      this.router.navigate(['/posts']);
     }
   }
 }
