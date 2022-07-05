@@ -48,12 +48,21 @@
   border-radius: 5px;
   background-color: rgba(196, 6, 6, 0.635);
 }
+.btn-back {
+  border-radius: 5px;
+  background-color: #ffd7d7;
+  color: black;
+  width: 80px;
+  font-weight: 600;
+  height: 40px;
+  cursor: pointer;
+}
 .post-propriety {
   border-radius: 8px;
   border: solid 2px rgba(128, 128, 128, 0.635);
   background-color: white;
   color: black;
-  min-height: 150px;
+  min-height: 400px;
 }
 .post-author-name {
   align-items: flex-start;

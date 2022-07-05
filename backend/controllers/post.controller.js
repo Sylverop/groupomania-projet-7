@@ -31,15 +31,12 @@ exports.createPost = (req, res, next) => {
 };
 
 //Modification d'un post
-exports.updatePost = (req, res) => {
-  const postObject = req.file ? {
-    ...JSON.parse(req.body.post),
-    imageUrl: `api/images/${req.file.filename}`
-} : {...req.body } 
- 
-Post.updateOne({ _id: req.params.id }, {...postObject, _id: req.params.id })
-  .then(res.status(200).json({ message: "poste modifiée" }))
-  .catch((error) => res.status(400).json({ error }))
+exports.updatePost = (req, res) => { 
+
+Post.findByIdAndUpdate(req.params.id, {message : req.body.message, imageUrl: `api/images/${req.file.filename}`})
+.then(() => res.status(200).json({message: "Post modifié"}))
+.catch((err) => res.status(400).json(err));
+
 };
 
 //Suppression d'un post

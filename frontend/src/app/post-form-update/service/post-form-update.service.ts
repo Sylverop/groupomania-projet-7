@@ -19,9 +19,9 @@ export class PostFormUpdateService {
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
 
-  updatePost(post: any): Observable<Boolean> {
+  updatePost(idPost: string, updatePost: any): Observable<Boolean> {
     return this.http
-      .put<any>(`${environment.backendServer}/api/posts/`, post)
+      .put<any>(`${environment.backendServer}/api/posts/${idPost}`, updatePost)
       .pipe(
         map((updatedPost: any) => {
           if (updatedPost != null) {
