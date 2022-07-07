@@ -26,24 +26,25 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 
 
-BACKEND
+# BACKEND
 
 <-------------------------------------------------------------------------->
 
-Groupomania-P7
+# Groupomania-P7
 Projet 7 - Construire une API sécurisée pour une application de réseau sociale
 
-Objectifs du projet
+# Objectifs du projet
 
 Développer dune application web nommée "Groupomania" dans laquelle les utilisateurs peuvent ajouter des publications, des commentaires, des likes pour les différentes publications proposées par les autres utilisateurs. 
 
-Les technique utilisés
+# Les outils technique utilisés
 Développement Backend en Javascript 
  Node.js,  
  Express, 
  MongoDB.
 
-MESURES DE SECURITE MISE EN PLACE
+# MESURES DE SECURITE MISE EN PLACE
+# 
 .Hashage du mot de passe utilisateur avec bcrypt
 
 .helmet est utilisé pour la sécurité 
@@ -56,7 +57,8 @@ MESURES DE SECURITE MISE EN PLACE
 
 .Authentification de l'utilisateur par token avec jsonwebtoken
 
-Tester l'application
+# Tester l'application
+
 1 - Cloner le repository, et le lancer :
 
 Dans un terminal, accéder au dossier du frontend
