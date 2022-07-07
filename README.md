@@ -79,5 +79,5 @@ Lancer le backend avec : npm start
 
 4 - Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:5000
 
-5- les variables d'environnement (dotenv) peuvent être modifié à votre convenance.
+5- les variables d'environnement (dotenv) peuvent être modifié à votre convenance, le .env n'étant pas push.
 
