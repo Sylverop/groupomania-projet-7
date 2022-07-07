@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   backendServer: 'http://localhost:5000',
   roles: {
-    admin: 'Admin',
+    admin: 'hahaisAdmin',
     member: 'Member',
   },
 };

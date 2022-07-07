@@ -33,12 +33,40 @@ exports.createPost = (req, res, next) => {
 };
 
 //Modification d'un post
-exports.updatePost = (req, res) => { 
-
-Post.findByIdAndUpdate(req.params.id, {message : req.body.message, imageUrl: `api/images/${req.file.filename}`})
-.then(() => res.status(200).json({message: "Post modifié"}))
-.catch((err) => res.status(400).json(err));
-
+exports.updatePost =  async (req, res) => { 
+  try {
+    let newImageUrl;
+    let post = await db.Post.findOne({ where: { id: req.params.id } });
+    if (userId === post.UserId) {
+      if (req.file) {
+        newImageUrl = `api/images/${
+          req.file.filename
+        }`;
+        if (post.imageUrl) {
+          const filename = post.imageUrl.split("/images/")[1];
+          fs.unlink(`images/${filename}`, (err) => {
+            if (err) console.log(err);
+            else {
+              console.log(`Deleted file: images/${filename}`);
+            }
+          });
+        }
+      }
+      if (req.body.message) {
+        post.message = req.body.message;
+      }
+      post.link = req.body.link;
+      post.imageUrl = newImageUrl;
+      const newPost = await post.save({
+        fields: ["message", "link", "imageUrl"],
+      });
+      res.status(200).json({ newPost: newPost, messageRetour: "post modifié" });
+    } else {
+      res.status(400).json({ message: "Vous n'avez pas les droits requis" });
+    }
+  } catch (error) {
+    return res.status(500).send({ error: "Erreur serveur" });
+  }
 };
 
 //Suppression d'un post
