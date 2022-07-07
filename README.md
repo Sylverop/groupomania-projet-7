@@ -28,6 +28,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 BACKEND
 
 <-------------------------------------------------------------------------->
+
 Groupomania-P7
 Projet 7 - Construire une API sécurisée pour une application de réseau sociale
 
