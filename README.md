@@ -42,6 +42,12 @@ Développement Backend en Javascript
  Node.js,  
  Express, 
  MongoDB.
+ 
+# Base de donnée
+
+1-Téléchargez MongoDB compass, 
+
+2-Rentrez le liens( fournit dans le pdf des livrables ),dans l'URI et cliquez sur connect  pour accéder à la base de données, une fois connecté cliquez sur Groupomania dans le menu à gauche en dessous de database pour accéder aux données.
 
 # MESURES DE SECURITE MISE EN PLACE
 # 
